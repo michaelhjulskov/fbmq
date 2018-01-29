@@ -27,6 +27,8 @@ class Buttons(object):
                             result.append(ButtonWeb(title=title, url=value))
                         elif type == 'postback':
                             result.append(ButtonPostBack(title=title, payload=value))
+                        elif type == 'nested':
+                            result.append(ButtonPersistentNested(title=title, buttons=value))
                         elif type == 'phone_number':
                             result.append(ButtonPhoneNumber(title=title, payload=value))
                         elif type == 'element_share':
@@ -57,6 +59,13 @@ class ButtonPostBack(BaseButton):
         self.type = 'postback'
         self.title = title
         self.payload = payload
+
+
+class ButtonPersistentNested(BaseButton):
+    def __init__(self, title, payload):
+        self.type = 'nested'
+        self.title = title
+        self.buttons = buttons
 
 
 class ButtonPhoneNumber(BaseButton):
