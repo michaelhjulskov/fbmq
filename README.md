@@ -369,10 +369,11 @@ def click_persistent_menu(payload, event):
 
 ### Persistent menu nested
 ```python
-nested = [Template.ButtonPostBack("Nested1", 'MENU_PAYLOAD/nested1'),
-          Template.ButtonPostBack("Nested2", 'MENU_PAYLOAD/nested2')]
-page.show_persistent_menu([Template.ButtonPostBack("Menu1", 'MENU_PAYLOAD/menu1'),
-                           Template.ButtonPersistentNested("Nested", nested)])
+page.show_persistent_menu([
+    Template.ButtonPostBack("Menu1", 'MENU_PAYLOAD/menu1'),
+    Template.ButtonPersistentNested("Nested", [
+        Template.ButtonPostBack("Nested1", 'MENU_PAYLOAD/nested1'),
+        Template.ButtonPostBack("Nested2", 'MENU_PAYLOAD/nested2')])])
 
 @page.callback(['MENU_PAYLOAD/(.+)'])
 def click_persistent_menu(payload, event):
