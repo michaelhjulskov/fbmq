@@ -560,7 +560,13 @@ class Page(object):
 
             buttons_dict = []
             for button in buttons:
-                if isinstance(button, ButtonWeb):
+                if isinstance(button, ButtonPersistentNested):
+                    buttons_dict.append({
+                        "type": "nested",
+                        "title": button.title,
+                        "buttons": button.buttons
+                    })
+                elif isinstance(button, ButtonWeb):
                     buttons_dict.append({
                         "type": "web_url",
                         "title": button.title,
