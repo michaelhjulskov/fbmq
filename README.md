@@ -367,6 +367,20 @@ def click_persistent_menu(payload, event):
   print("you clicked %s menu" % click_menu)
 ```
 
+### Persistent menu nested
+```python
+nested = [Template.ButtonPostBack("Nested1", 'MENU_PAYLOAD/nested1'),
+          Template.ButtonPostBack("Nested2", 'MENU_PAYLOAD/nested2')]
+page.show_persistent_menu([Template.ButtonPostBack("Menu1", 'MENU_PAYLOAD/menu1'),
+                           Template.ButtonPersistentNested("Nested", nested)])
+
+@page.callback(['MENU_PAYLOAD/(.+)'])
+def click_persistent_menu(payload, event):
+  click_menu = payload.split('/')[1]
+  print("you clicked %s menu" % click_menu)
+```
+
+
 # Fetch user/page profile
 ```
 page_id = page.page_id
